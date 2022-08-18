@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- MARGIN -->
+    <dimen name="margin_5">5dp</dimen>
+    <dimen name="margin_10">10dp</dimen>>
+    <dimen name="margin_11">11dp</dimen>
+    <dimen name="margin_15">15dp</dimen>
+    <dimen name="margin_20">20dp</dimen>
+    <dimen name="margin_30">30dp</dimen>
+
+    <!-- COMPONENT DIMENS-->
+
+    <dimen name="bacground_logo_height">66dp</dimen>
+
+    <dimen name="card_width">150dp</dimen>
+    <dimen name="card_height">196dp</dimen>
+
+    <dimen name="image_size">90dp</dimen>
+    <dimen name="image_detail_size">180dp</dimen>
+
+    <dimen name="button_width">150dp</dimen>
+
+</resources>
