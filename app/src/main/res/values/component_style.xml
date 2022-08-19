@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="BottomNavigationView" parent="Widget.Design.BottomNavigationView">
+        <item name="fontFamily">@font/roboto_regular</item>
+        <item name="itemIconTint">@drawable/navigation_bar_style</item>
+        <item name="itemTextColor">@drawable/navigation_bar_style</item>
+    </style>
+
+    <style name="SearchView">
+        <item name="iconifiedByDefault">false</item>
+        <item name="searchHintIcon">@drawable/ic_search</item>
+        <item name="searchIcon">@drawable/ic_search</item>
+        <item name="closeIcon">@drawable/ic_star</item>
+        <item name="android:background">@drawable/background_search_bar</item>
+        <item name="theme">@style/Arial.Regular.White.14</item>
+        <item name="queryBackground">@android:color/transparent</item>
+        <item name="queryHint">Cerca...</item>
+        <item name="android:textColorHint">@color/white</item>
+    </style>
+</resources>

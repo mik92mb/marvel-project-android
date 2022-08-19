@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+ <!--   <color name="colorPrimary">#FFFFFF</color>-->
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
     <color name="red">#ED1D24</color>
     <color name="brown_100">#4D090B</color>
-    <color name="brown_15">#E6CFCF</color>
+    <color name="brown_15">#59550007</color>
     <color name="brown_dark">#0E0202</color>
+    <color name="gray_50">#AAAAAA</color>
 
 </resources>
