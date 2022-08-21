@@ -12,13 +12,8 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="it.marvel.ui.HomeFragment"
-        tools:layout="@layout/fragment_home">
-        <!--
-         <action
-            android:id="@+id/navigateToFragmentDetail"
-            app:destination="@id/navigation_profile" />-->
-    </fragment>
+        android:name="it.marvel.ui.home.HomeFragment"
+        tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_settings"

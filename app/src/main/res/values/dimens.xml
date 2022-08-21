@@ -9,6 +9,7 @@
     <dimen name="margin_20">20dp</dimen>
     <dimen name="margin_30">30dp</dimen>
     <dimen name="margin_40">40dp</dimen>
+    <dimen name="margin_96">96dp</dimen>
 
     <!-- COMPONENT DIMENS-->
 
@@ -21,6 +22,14 @@
     <dimen name="image_detail_size">180dp</dimen>
 
     <dimen name="button_width">150dp</dimen>
+    <dimen name="button_height">40dp</dimen>
     <dimen name="search_bar_height">40dp</dimen>
+
+    <dimen name="loading_width">40dp</dimen>
+    <dimen name="loading_height">40dp</dimen>
+
+    <dimen name="empty_image_width">200dp</dimen>
+    <dimen name="empty_image_height">200dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 
 </resources>

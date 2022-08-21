@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:background="@drawable/gradient_background">
+
+    <include
+        android:id="@+id/infoComicsLayout"
+        layout="@layout/info_item" />
+
+    <include
+        android:id="@+id/infoStoriesLayout"
+        layout="@layout/info_item" />
+
+    <include
+        android:id="@+id/infoEventsLayout"
+        layout="@layout/info_item" />
+
+    <include
+        android:id="@+id/infoSeriesLayout"
+        layout="@layout/info_item" />
+
+    <include
+        android:id="@+id/separatorLayout"
+        layout="@layout/separator" />
+
+</LinearLayout>

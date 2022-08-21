@@ -2,18 +2,18 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardView"
     android:layout_width="@dimen/card_width"
     android:layout_height="@dimen/card_height"
     android:layout_margin="@dimen/margin_15"
-    android:clickable="true"
-    android:focusable="true"
     app:cardBackgroundColor="@color/brown_15"
     app:cardCornerRadius="5dp"
     app:cardElevation="4dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="?android:attr/selectableItemBackground">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/circleImage"
@@ -34,7 +34,9 @@
             android:layout_marginStart="@dimen/margin_10"
             android:layout_marginTop="@dimen/margin_5"
             android:layout_marginEnd="@dimen/margin_10"
+            android:ellipsize="end"
             android:gravity="center"
+            android:maxLines="2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/circleImage"
@@ -48,6 +50,7 @@
             android:layout_marginStart="@dimen/margin_15"
             android:layout_marginTop="@dimen/margin_5"
             android:layout_marginEnd="@dimen/margin_15"
+            android:ellipsize="end"
             android:gravity="center"
             android:maxLines="2"
             app:layout_constraintEnd_toEndOf="parent"

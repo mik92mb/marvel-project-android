@@ -7,6 +7,14 @@
         <item name="itemTextColor">@drawable/navigation_bar_style</item>
     </style>
 
+    <style name="Button">
+        <item name="android:layout_width">@dimen/button_width</item>
+        <item name="android:layout_height">@dimen/button_height</item>
+        <item name="android:background">@drawable/button_background</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:theme">@style/Roboto.Medium.White.16</item>
+    </style>
+
     <style name="SearchView">
         <item name="iconifiedByDefault">false</item>
         <item name="searchHintIcon">@drawable/ic_search</item>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/circleImage"
+        android:layout_width="@dimen/image_detail_size"
+        android:layout_height="@dimen/image_detail_size"
+        android:layout_marginTop="@dimen/margin_96"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:background="@color/white" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/favoriteIcon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="@dimen/margin_10"
+        android:src="@drawable/ic_star"
+        app:layout_constraintBottom_toBottomOf="@+id/circleImage"
+        app:layout_constraintEnd_toStartOf="@+id/circleImage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/circleImage" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/shareIcon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="@dimen/margin_10"
+        android:src="@drawable/ic_share"
+        app:layout_constraintBottom_toBottomOf="@+id/circleImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/circleImage"
+        app:layout_constraintTop_toTopOf="@+id/circleImage" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/name"
+        style="@style/Roboto.Medium.White.26"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_20"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/circleImage"
+        tools:text="Iron Man" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

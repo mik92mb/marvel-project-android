@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">Marvel</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="back">Back</string>
+    <string name="point">●</string>
+    <string name="comics">Comics</string>
+    <string name="stories">Stories</string>
+    <string name="events">Events</string>
+    <string name="series">Series</string>
 </resources>
