@@ -43,9 +43,8 @@ class DetailActivity : AppCompatActivity() {
     private val sizeEvents: AppCompatTextView by lazy { eventsLayout.findViewById(R.id.size) }
     private val sizeStories: AppCompatTextView by lazy { storiesLayout.findViewById(R.id.size) }
 
-
-//    private val description: AppCompatTextView
-//    private val descriptionLabel: AppCompatImageView
+    private val descriptionLabel: AppCompatTextView by lazy { findViewById(R.id.descriptionLabel) }
+    private val description: AppCompatTextView by lazy { findViewById(R.id.description) }
 
     private val backButton: AppCompatButton by lazy { findViewById(R.id.backButton) }
 
@@ -95,5 +94,11 @@ class DetailActivity : AppCompatActivity() {
 
         infoStories.text = getString(R.string.stories)
         //     sizeStories.text = character.stories?.size.toString()
+
+        if (!character.description.isNullOrEmpty()) {
+            description.text = character.description
+        } else {
+            descriptionLabel.text = getString(R.string.no_description_available)
+        }
     }
 }
