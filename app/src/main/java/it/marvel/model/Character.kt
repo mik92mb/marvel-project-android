@@ -12,12 +12,10 @@ data class Character(
     val resourceURI: String?,
     val thumbnail: Image?,
     val urls: List<Url>? = emptyList(),
-    /* val comics: List<Comic>? = emptyList(),
-     val stories: List<Comic>? = emptyList(),
-     val events: List<Comic>? = emptyList(),
-     val series: List<Comic>? = emptyList()
-
-     */
+    val comics: Comic?,
+    val stories: Comic?,
+    val events: Comic?,
+    val series: Comic?
 ) : Parcelable {
 
     fun imageUrl(): String? =

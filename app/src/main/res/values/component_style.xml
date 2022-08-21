@@ -19,7 +19,7 @@
         <item name="iconifiedByDefault">false</item>
         <item name="searchHintIcon">@drawable/ic_search</item>
         <item name="searchIcon">@drawable/ic_search</item>
-        <item name="closeIcon">@drawable/ic_star</item>
+        <item name="closeIcon">@drawable/ic_cross</item>
         <item name="android:background">@drawable/background_search_bar</item>
         <item name="theme">@style/Arial.Regular.White.14</item>
         <item name="queryBackground">@android:color/transparent</item>

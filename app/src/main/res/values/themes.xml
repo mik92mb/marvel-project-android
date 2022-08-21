@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.Marvel" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorAccent">@color/white</item>
-        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightStatusBar">false</item>
         <item name="android:statusBarColor">@color/red</item>
     </style>
 </resources>

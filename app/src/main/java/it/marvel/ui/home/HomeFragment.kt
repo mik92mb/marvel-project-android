@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import it.marvel.R
 import it.marvel.isVisible
+import it.marvel.model.CharacterDataContainer
 import it.marvel.network.StateObserver
 
 class HomeFragment : Fragment(), StateObserver {
@@ -27,6 +28,7 @@ class HomeFragment : Fragment(), StateObserver {
     private lateinit var nestedScrollView: NestedScrollView
     private lateinit var loadingLayout: ConstraintLayout
     private lateinit var errorLayout: ConstraintLayout
+    private var characterDataContainer: CharacterDataContainer? = null
 
     private val viewModel by viewModels<HomeViewModel>()
 
@@ -43,8 +45,9 @@ class HomeFragment : Fragment(), StateObserver {
         viewModel.state.observe(
             loading = { loadingState() },
             success = {
+                characterDataContainer = it.data
                 successState()
-                characterAdapter.addAll(it.data?.results.orEmpty())
+                characterAdapter.addAll(characterDataContainer?.results.orEmpty())
             },
             error = { errorState() }
         )
@@ -73,11 +76,28 @@ class HomeFragment : Fragment(), StateObserver {
 
     private fun setSearchView() {
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                return true
+            override fun onQueryTextSubmit(query: String): Boolean {
+                return if (query.isBlank()) {
+                    characterAdapter.clearAll()
+                    characterAdapter.addAll(characterDataContainer?.results.orEmpty())
+                    true
+                } else {
+                    val filteredCharacters = characterDataContainer?.results?.filter {
+                        (it.name?.contains(query, true) ?: false ||
+                                it.description?.contains(query, true) ?: false)
+                    }
+                    characterAdapter.clearAll()
+                    characterAdapter.addAll(filteredCharacters.orEmpty())
+                    true
+                }
             }
 
-            override fun onQueryTextChange(newText: String?): Boolean {
+            override fun onQueryTextChange(query: String): Boolean {
+                if (query.isBlank()) {
+                    characterAdapter.clearAll()
+                    characterAdapter.addAll(characterDataContainer?.results.orEmpty())
+                    return true
+                }
                 return true
             }
         })

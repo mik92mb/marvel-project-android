@@ -84,16 +84,16 @@ class DetailActivity : AppCompatActivity() {
 
         name.text = character.name.orEmpty()
         infoComics.text = getString(R.string.comics)
-        // sizeComics.text = character.comics?.size.toString()
+        sizeComics.text = character.comics?.items?.size.toString()
 
         infoSeries.text = getString(R.string.series)
-        //     sizeSeries.text = character.series?.size.toString()
+        sizeSeries.text = character.series?.items?.size.toString()
 
         infoEvents.text = getString(R.string.events)
-        //    sizeEvents.text = character.events?.size.toString()
+        sizeEvents.text = character.events?.items?.size.toString()
 
         infoStories.text = getString(R.string.stories)
-        //     sizeStories.text = character.stories?.size.toString()
+        sizeStories.text = character.stories?.items?.size.toString()
 
         if (!character.description.isNullOrEmpty()) {
             description.text = character.description

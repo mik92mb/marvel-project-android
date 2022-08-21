@@ -40,6 +40,11 @@ class CharacterAdapter(
         }
     }
 
+    fun clearAll() {
+        characters.clear()
+        notifyDataSetChanged()
+    }
+
     class ItemViewHolder(
         private val view: View,
         private val onItemClick: OnItemClick
@@ -48,7 +53,7 @@ class CharacterAdapter(
         private val cardView: CardView = view.findViewById(R.id.cardView)
         private val circleImage: CircleImageView = view.findViewById(R.id.circleImage)
         private val name: AppCompatTextView = view.findViewById(R.id.name)
-        private val descrption: AppCompatTextView = view.findViewById(R.id.description)
+        private val description: AppCompatTextView = view.findViewById(R.id.description)
 
         fun bind(character: Character) {
 
@@ -57,7 +62,7 @@ class CharacterAdapter(
             }
 
             name.text = character.name
-            descrption.text = character.description
+            description.text = character.description
             cardView.setOnClickListener { onItemClick.invoke(character) }
         }
     }
