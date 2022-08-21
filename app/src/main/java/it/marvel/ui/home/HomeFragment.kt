@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.SearchView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.widget.NestedScrollView
@@ -28,6 +29,9 @@ class HomeFragment : Fragment(), StateObserver {
     private lateinit var nestedScrollView: NestedScrollView
     private lateinit var loadingLayout: ConstraintLayout
     private lateinit var errorLayout: ConstraintLayout
+    private lateinit var errorTitle: AppCompatTextView
+    private lateinit var errorDescription: AppCompatTextView
+
     private var characterDataContainer: CharacterDataContainer? = null
 
     private val viewModel by viewModels<HomeViewModel>()
@@ -49,7 +53,7 @@ class HomeFragment : Fragment(), StateObserver {
                 successState()
                 characterAdapter.addAll(characterDataContainer?.results.orEmpty())
             },
-            error = { errorState() }
+            error = { errorState(it) }
         )
 
         setViews(view)
@@ -64,6 +68,8 @@ class HomeFragment : Fragment(), StateObserver {
             loadingLayout = findViewById(R.id.loadingLayout)
             nestedScrollView = findViewById(R.id.nestedScrollView)
             errorLayout = findViewById(R.id.errorLayout)
+            errorTitle = findViewById(R.id.title)
+            errorDescription = findViewById(R.id.description)
         }
     }
 
@@ -115,9 +121,11 @@ class HomeFragment : Fragment(), StateObserver {
         errorLayout.isVisible(false)
     }
 
-    private fun errorState() {
+    private fun errorState(throwable: Throwable) {
         loadingLayout.isVisible(false)
         nestedScrollView.isVisible(false)
         errorLayout.isVisible(true)
+        errorTitle.text = getString(R.string.ops)
+        errorDescription.text = throwable.message.orEmpty()
     }
 }
