@@ -78,6 +78,13 @@ dependencies {
 
     // Threeten
     implementation 'org.threeten:threetenbp:1.5.1'
+/*
+    // Koin
+    implementation 'io.insert-koin:koin-core:3.2'
+    // Testing
+    testImplementation 'io.insert-koin:koin-test:3.2'
+
+ */
 
 
 }

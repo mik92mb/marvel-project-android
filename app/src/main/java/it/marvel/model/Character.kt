@@ -8,7 +8,7 @@ data class Character(
     val id: Int?,
     val name: String?,
     val description: String?,
-    //   val modified: LocalDateTime?,
+    val modified: String?,
     val resourceURI: String?,
     val thumbnail: Image?,
     val urls: List<Url>? = emptyList(),
