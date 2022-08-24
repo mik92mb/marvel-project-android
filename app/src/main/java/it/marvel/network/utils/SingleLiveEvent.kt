@@ -1,4 +1,4 @@
-package it.marvel.network
+package it.marvel.network.utils
 /*
  *  Copyright 2017 Google Inc.
  *

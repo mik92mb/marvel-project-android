@@ -1,21 +1,34 @@
 package it.marvel
 
 import android.app.Application
-import it.marvel.network.MarvelRepository
-import it.marvel.network.RetrofitBuilder
+import it.marvel.di.*
+import org.koin.android.ext.koin.androidContext
+import org.koin.core.context.startKoin
 import timber.log.Timber
 
 class App : Application() {
 
-    companion object {
-        internal lateinit var marvelRepository: MarvelRepository
-    }
-
     override fun onCreate() {
         super.onCreate()
-        marvelRepository = MarvelRepository(RetrofitBuilder.marvelAPI)
+        initTimber()
+        initKoinModules()
+    }
+
+    private fun initTimber() {
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
         }
     }
+
+    private fun initKoinModules() =
+        startKoin {
+            androidContext(this@App)
+            modules(
+                viewModelModule,
+                apiModule,
+                networkModule,
+                databaseModule,
+                repositoryModule,
+            )
+        }
 }

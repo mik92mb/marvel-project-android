@@ -9,14 +9,15 @@ import androidx.appcompat.widget.SearchView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import it.marvel.R
-import it.marvel.isVisible
-import it.marvel.model.CharacterDataContainer
-import it.marvel.network.StateObserver
+import it.marvel.network.entities.Character
+import it.marvel.network.utils.StateObserver
+import it.marvel.ui.home.adapter.CharacterAdapter
+import it.marvel.utils.isVisible
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment(), StateObserver {
 
@@ -32,9 +33,9 @@ class HomeFragment : Fragment(), StateObserver {
     private lateinit var errorTitle: AppCompatTextView
     private lateinit var errorDescription: AppCompatTextView
 
-    private var characterDataContainer: CharacterDataContainer? = null
+    private var characters: List<Character> = emptyList()
 
-    private val viewModel by viewModels<HomeViewModel>()
+    private val viewModel by viewModel<HomeViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,9 +50,9 @@ class HomeFragment : Fragment(), StateObserver {
         viewModel.state.observe(
             loading = { loadingState() },
             success = {
-                characterDataContainer = it.data
+                characters = it
                 successState()
-                characterAdapter.addAll(characterDataContainer?.results.orEmpty())
+                characterAdapter.addAll(characters)
             },
             error = { errorState(it) }
         )
@@ -84,24 +85,21 @@ class HomeFragment : Fragment(), StateObserver {
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 return if (query.isBlank()) {
-                    characterAdapter.clearAll()
-                    characterAdapter.addAll(characterDataContainer?.results.orEmpty())
+                    characterAdapter.addAll(characters)
                     true
                 } else {
-                    val filteredCharacters = characterDataContainer?.results?.filter {
+                    val filteredCharacters = characters.filter {
                         (it.name?.contains(query, true) ?: false ||
                                 it.description?.contains(query, true) ?: false)
                     }
-                    characterAdapter.clearAll()
-                    characterAdapter.addAll(filteredCharacters.orEmpty())
+                    characterAdapter.addAll(filteredCharacters)
                     true
                 }
             }
 
             override fun onQueryTextChange(query: String): Boolean {
                 if (query.isBlank()) {
-                    characterAdapter.clearAll()
-                    characterAdapter.addAll(characterDataContainer?.results.orEmpty())
+                    characterAdapter.addAll(characters)
                     return true
                 }
                 return true
@@ -125,7 +123,7 @@ class HomeFragment : Fragment(), StateObserver {
         loadingLayout.isVisible(false)
         nestedScrollView.isVisible(false)
         errorLayout.isVisible(true)
-        errorTitle.text = getString(R.string.ops)
+        errorTitle.text = throwable::class.simpleName
         errorDescription.text = throwable.message.orEmpty()
     }
 }

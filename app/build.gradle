@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
     id 'org.jetbrains.kotlin.plugin.parcelize'
 }
 
@@ -50,8 +51,9 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
 
     // Navigation
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.1'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.5.1'
+    def navigation_version = "2.5.1"
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigation_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$navigation_version"
 
     // Timber
     implementation 'com.jakewharton.timber:timber:5.0.1'
@@ -60,31 +62,42 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
     // Coroutines
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.6.1'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.6.4'
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.5.1"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1"
 
     // Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.google.code.gson:gson:2.9.0'
+
+    // OkHttp
     implementation 'com.squareup.okhttp3:logging-interceptor:4.9.3'
 
     // Moshi
+    def moshi_version = "1.13.0"
     implementation "com.squareup.retrofit2:converter-moshi:2.9.0"
-    implementation "com.squareup.moshi:moshi:1.13.0"
-    implementation "com.squareup.moshi:moshi-kotlin:1.12.0"
+    implementation "com.squareup.moshi:moshi:$moshi_version"
+    implementation "com.squareup.moshi:moshi-kotlin:$moshi_version"
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshi_version"
 
     // Glide
-    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    implementation 'com.github.bumptech.glide:glide:4.13.2'
 
     // Threeten
-    implementation 'org.threeten:threetenbp:1.5.1'
-/*
+    implementation 'org.threeten:threetenbp:1.6.1'
+
+    //Room
+    def room_version = "2.4.3"
+    implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+
     // Koin
-    implementation 'io.insert-koin:koin-core:3.2'
+    def koin_version = "3.2.0"
+    implementation "io.insert-koin:koin-android:$koin_version"
+    implementation "io.insert-koin:koin-core:$koin_version"
+
     // Testing
-    testImplementation 'io.insert-koin:koin-test:3.2'
-
- */
-
+    // testImplementation 'io.insert-koin:koin-test:3.2'
 
 }

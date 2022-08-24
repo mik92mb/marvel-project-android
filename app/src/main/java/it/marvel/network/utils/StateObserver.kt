@@ -1,4 +1,4 @@
-package it.marvel.network
+package it.marvel.network.utils
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
@@ -27,7 +27,7 @@ interface StateObserver {
 
             is State.Error -> {
                 Timber.e("SONO IN ON ERROR - $it")
-                error(it)
+                error(it.exception)
             }
         }
     }

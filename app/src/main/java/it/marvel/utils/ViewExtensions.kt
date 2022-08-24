@@ -1,4 +1,4 @@
-package it.marvel
+package it.marvel.utils
 
 import android.content.Context
 import android.view.View

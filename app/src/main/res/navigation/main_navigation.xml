@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_favorite"
-        android:name="it.marvel.ui.FavoriteFragment"
+        android:name="it.marvel.ui.favorite.FavoriteFragment"
         tools:layout="@layout/fragment_favorite" />
 
     <fragment
@@ -17,6 +17,6 @@
 
     <fragment
         android:id="@+id/navigation_settings"
-        android:name="it.marvel.ui.SettingsFragment"
+        android:name="it.marvel.ui.settings.SettingsFragment"
         tools:layout="@layout/fragment_settings" />
 </navigation>

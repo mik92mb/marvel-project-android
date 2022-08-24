@@ -1,4 +1,4 @@
-package it.marvel
+package it.marvel.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -6,6 +6,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import it.marvel.R
 
 class MainActivity : AppCompatActivity() {
 

@@ -11,10 +11,10 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import de.hdodenhof.circleimageview.CircleImageView
-import it.marvel.Costants
+import it.marvel.utils.Costants
 import it.marvel.R
-import it.marvel.loadImage
-import it.marvel.model.Character
+import it.marvel.utils.loadImage
+import it.marvel.network.entities.Character
 
 class DetailActivity : AppCompatActivity() {
 
@@ -62,7 +62,6 @@ class DetailActivity : AppCompatActivity() {
         character = intent.extras?.get(Costants.CHARACTER_SELECTED) as Character
         setValues()
     }
-
 
     private fun setValues() {
 

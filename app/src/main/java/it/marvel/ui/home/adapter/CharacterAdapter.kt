@@ -1,4 +1,4 @@
-package it.marvel.ui.home
+package it.marvel.ui.home.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -9,8 +9,8 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import de.hdodenhof.circleimageview.CircleImageView
 import it.marvel.R
-import it.marvel.loadImage
-import it.marvel.model.Character
+import it.marvel.utils.loadImage
+import it.marvel.network.entities.Character
 
 typealias OnItemClick = (Character) -> Unit
 
@@ -34,13 +34,14 @@ class CharacterAdapter(
     }
 
     fun addAll(chars: List<Character>) {
+        clearAll()
         characters.addAll(chars)
         for (i in chars.indices) {
             notifyItemChanged(i)
         }
     }
 
-    fun clearAll() {
+    private fun clearAll() {
         characters.clear()
         notifyDataSetChanged()
     }

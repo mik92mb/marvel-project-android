@@ -1,4 +1,4 @@
-package it.marvel.ui
+package it.marvel.ui.favorite
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

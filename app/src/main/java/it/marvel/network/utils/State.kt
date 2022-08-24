@@ -1,4 +1,4 @@
-package it.marvel.network
+package it.marvel.network.utils
 
 sealed class State<out T> {
     object Loading : State<Nothing>()
