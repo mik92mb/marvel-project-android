@@ -33,7 +33,7 @@
         </activity>
 
         <activity
-            android:name=".ui.home.DetailActivity"
+            android:name=".ui.home.detail.DetailActivity"
             android:exported="true"
             android:screenOrientation="fullSensor"
             android:theme="@style/Theme.Marvel" />

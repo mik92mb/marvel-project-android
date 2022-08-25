@@ -1,4 +1,4 @@
-package it.marvel.ui.home
+package it.marvel.ui.home.detail
 
 import android.content.Context
 import android.content.Intent

@@ -31,5 +31,7 @@
     <dimen name="empty_image_width">200dp</dimen>
     <dimen name="empty_image_height">200dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="ic_size">24dp</dimen>
+    <dimen name="layout_button_height">140dp</dimen>
 
 </resources>

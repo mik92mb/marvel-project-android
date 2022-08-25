@@ -25,7 +25,7 @@
 
     <style name="Arial.Regular.White.14" parent="Arial.Regular">
         <item name="android:textColor">@color/white</item>
-        <item name="android:textColorHint">@color/gray_50</item>
+        <item name="android:textColorHint">@color/gray_70</item>
         <item name="android:editTextColor">@color/white</item>
         <item name="android:textSize">14sp</item>
     </style>

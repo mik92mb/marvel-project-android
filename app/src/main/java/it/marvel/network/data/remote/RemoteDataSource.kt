@@ -27,5 +27,5 @@ suspend fun <T> getResult(call: suspend () -> Response<T>): State<T> {
 
 private fun <T> error(message: String): State<T> {
     Timber.e("RemoteDataSource ERROR!", message)
-    return State.Error(Exception("Network call has failed for a following reason: $message"))
+    return State.Error(Exception("Network call failed: $message"))
 }

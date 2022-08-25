@@ -17,10 +17,10 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/favoriteIcon"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="@dimen/margin_10"
+        android:layout_width="@dimen/ic_size"
+        android:layout_height="@dimen/ic_size"
         android:src="@drawable/ic_star"
+        android:tint="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/circleImage"
         app:layout_constraintEnd_toStartOf="@+id/circleImage"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,8 +28,8 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/shareIcon"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
+        android:layout_width="@dimen/ic_size"
+        android:layout_height="@dimen/ic_size"
         android:layout_marginStart="@dimen/margin_10"
         android:src="@drawable/ic_share"
         app:layout_constraintBottom_toBottomOf="@+id/circleImage"

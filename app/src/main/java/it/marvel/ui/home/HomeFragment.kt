@@ -13,9 +13,9 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import it.marvel.R
-import it.marvel.network.entities.Character
 import it.marvel.network.utils.StateObserver
 import it.marvel.ui.home.adapter.CharacterAdapter
+import it.marvel.ui.home.detail.DetailActivity
 import it.marvel.utils.isVisible
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -33,8 +33,6 @@ class HomeFragment : Fragment(), StateObserver {
     private lateinit var errorTitle: AppCompatTextView
     private lateinit var errorDescription: AppCompatTextView
 
-    private var characters: List<Character> = emptyList()
-
     private val viewModel by viewModel<HomeViewModel>()
 
     override fun onCreateView(
@@ -50,9 +48,9 @@ class HomeFragment : Fragment(), StateObserver {
         viewModel.state.observe(
             loading = { loadingState() },
             success = {
-                characters = it
+                viewModel.setCharactersFiltered(it)
                 successState()
-                characterAdapter.addAll(characters)
+                characterAdapter.addAll(it)
             },
             error = { errorState(it) }
         )
@@ -85,21 +83,17 @@ class HomeFragment : Fragment(), StateObserver {
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 return if (query.isBlank()) {
-                    characterAdapter.addAll(characters)
+                    characterAdapter.addAll(viewModel.stateCharacterFiltered.value.orEmpty())
                     true
                 } else {
-                    val filteredCharacters = characters.filter {
-                        (it.name?.contains(query, true) ?: false ||
-                                it.description?.contains(query, true) ?: false)
-                    }
-                    characterAdapter.addAll(filteredCharacters)
+                    characterAdapter.addAll(viewModel.getCharacterFiltered(query))
                     true
                 }
             }
 
             override fun onQueryTextChange(query: String): Boolean {
                 if (query.isBlank()) {
-                    characterAdapter.addAll(characters)
+                    characterAdapter.addAll(viewModel.stateCharacterFiltered.value.orEmpty())
                     return true
                 }
                 return true
