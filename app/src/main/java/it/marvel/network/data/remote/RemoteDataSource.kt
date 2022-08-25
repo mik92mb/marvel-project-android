@@ -1,12 +1,21 @@
 package it.marvel.network.data.remote
 
 import it.marvel.network.utils.State
+import it.marvel.network.utils.Support
 import retrofit2.Response
 import timber.log.Timber
 
 class RemoteDataSource(private val marvelAPI: MarvelAPI) {
 
-    suspend fun getCharacters() = getResult { marvelAPI.getCharacters() }
+    suspend fun getCharacters() = getResult {
+        val timestamp = System.currentTimeMillis().toString()
+        marvelAPI.getCharacters(
+            apiKey = Support.PUBLIC_API_KEY,
+            timestamp = timestamp,
+            hash = Support.hashGenerator(timestamp),
+            limit = 100
+        )
+    }
 
 }
 

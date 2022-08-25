@@ -82,19 +82,17 @@ class HomeFragment : Fragment(), StateObserver {
     private fun setSearchView() {
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-                return if (query.isBlank()) {
+                if (query.isBlank()) {
                     characterAdapter.addAll(viewModel.stateCharacterFiltered.value.orEmpty())
-                    true
                 } else {
                     characterAdapter.addAll(viewModel.getCharacterFiltered(query))
-                    true
                 }
+                return true
             }
 
             override fun onQueryTextChange(query: String): Boolean {
                 if (query.isBlank()) {
                     characterAdapter.addAll(viewModel.stateCharacterFiltered.value.orEmpty())
-                    return true
                 }
                 return true
             }

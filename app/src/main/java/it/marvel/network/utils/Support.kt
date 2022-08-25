@@ -1,19 +1,19 @@
 package it.marvel.network.utils
 
-import it.marvel.utils.Costants
-import org.threeten.bp.LocalDateTime
-import org.threeten.bp.ZoneOffset
-import java.math.BigInteger
 import java.security.MessageDigest
 
 object Support {
 
-    fun getTimeStamp(): String = LocalDateTime.now().toEpochSecond(ZoneOffset.UTC).toString()
+    const val PUBLIC_API_KEY = "33c318ead0ca5ba1638e529c3b92e72e"
+    private const val PRIVATE_API_KEY = "de89579c3552cbf435601db1a9e6c88c7253ed1d"
+    private const val ALGORITHM_TYPE = "MD5"
+    private const val HASH_FORMAT = "%s%s%s"
 
-    fun hashGenerator(): String {
-        val stringToHash =
-            "${getTimeStamp()}${Costants.PRIVATE_KEY}${Costants.PUBLIC_KEY}".toByteArray()
-        val md = MessageDigest.getInstance("MD5")
-        return BigInteger(1, md.digest(stringToHash)).toString(16).padStart(32, '0')
+    fun hashGenerator(timestamp: String): String {
+        val stringToHash = HASH_FORMAT.format(timestamp, PRIVATE_API_KEY, PUBLIC_API_KEY)
+        return MessageDigest
+            .getInstance(ALGORITHM_TYPE)
+            .digest(stringToHash.toByteArray())
+            .joinToString("") { "%02x".format(it) }
     }
 }
