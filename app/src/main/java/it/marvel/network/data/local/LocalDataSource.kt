@@ -11,7 +11,7 @@ import it.marvel.network.entities.Character
 interface LocalDataSource {
 
     @Query("SELECT * FROM characters")
-    fun getCharacters(): LiveData<List<Character>>
+    suspend fun getCharacters(): List<Character>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAllCharacters(characters: List<Character>)
