@@ -25,7 +25,8 @@ data class Character(
     @Embedded(prefix = "events")
     val events: Content?,
     @Embedded(prefix = "series")
-    val series: Content?
+    val series: Content?,
+    val isFavorite: Boolean = false
 ) : Parcelable {
 
     fun imageUrl(): String? =

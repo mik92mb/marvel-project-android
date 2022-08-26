@@ -6,19 +6,19 @@ import android.os.Bundle
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import de.hdodenhof.circleimageview.CircleImageView
-import it.marvel.utils.Costants
 import it.marvel.R
-import it.marvel.utils.loadImage
 import it.marvel.network.entities.Character
+import it.marvel.utils.Costants
+import it.marvel.utils.loadImage
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DetailActivity : AppCompatActivity() {
-
-    private lateinit var character: Character
 
     private val favoriteIcon: AppCompatImageView by lazy { findViewById(R.id.favoriteIcon) }
     private val shareIcon: AppCompatImageView by lazy { findViewById(R.id.shareIcon) }
@@ -48,6 +48,8 @@ class DetailActivity : AppCompatActivity() {
 
     private val backButton: AppCompatButton by lazy { findViewById(R.id.backButton) }
 
+    private val viewModel by viewModel<DetailViewModel>()
+
     companion object {
         fun start(context: Context, character: Character) {
             val intent = Intent(context, DetailActivity::class.java)
@@ -59,19 +61,34 @@ class DetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
-        character = intent.extras?.get(Costants.CHARACTER_SELECTED) as Character
+        val character = intent.extras?.get(Costants.CHARACTER_SELECTED) as Character
+        viewModel.setCharacter(character)
         setValues()
+
+        viewModel.character.observe(this) { setFavouriteIcon() }
+    }
+
+    private fun setFavouriteIcon() {
+        favoriteIcon.apply {
+            val background = if (viewModel.character.value?.isFavorite == true) {
+                R.drawable.ic_favorite_white
+            } else {
+                R.drawable.ic_favorite
+            }
+            setImageDrawable(AppCompatResources.getDrawable(this@DetailActivity, background))
+            setOnClickListener {
+                val isFavorite = viewModel.getCurrentFavoriteValue()
+                viewModel.updateFavorite(isFavorite)
+                val textToShow = if (!isFavorite) "CHARACTER SET AS FAVORITE! \uD83D\uDE0E"
+                else "CHARACTER REMOVED AS FAVORITE! \uD83D\uDE13"
+                Toast.makeText(this@DetailActivity, textToShow, Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     private fun setValues() {
-
-        character.imageUrl()?.let {
+        viewModel.character.value?.imageUrl()?.let {
             image.loadImage(this, it, R.drawable.ic_placeholder)
-        }
-
-        favoriteIcon.setOnClickListener {
-            Toast.makeText(this@DetailActivity, "CLICK ON FAVORITE ICON!", Toast.LENGTH_SHORT)
-                .show()
         }
 
         shareIcon.setOnClickListener {
@@ -81,21 +98,21 @@ class DetailActivity : AppCompatActivity() {
 
         backButton.setOnClickListener { finish() }
 
-        name.text = character.name.orEmpty()
+        name.text = viewModel.character.value?.name.orEmpty()
         infoComics.text = getString(R.string.comics)
-        sizeComics.text = character.comics?.items?.size.toString()
+        sizeComics.text = viewModel.character.value?.comics?.items?.size.toString()
 
         infoSeries.text = getString(R.string.series)
-        sizeSeries.text = character.series?.items?.size.toString()
+        sizeSeries.text = viewModel.character.value?.series?.items?.size.toString()
 
         infoEvents.text = getString(R.string.events)
-        sizeEvents.text = character.events?.items?.size.toString()
+        sizeEvents.text = viewModel.character.value?.events?.items?.size.toString()
 
         infoStories.text = getString(R.string.stories)
-        sizeStories.text = character.stories?.items?.size.toString()
+        sizeStories.text = viewModel.character.value?.stories?.items?.size.toString()
 
-        if (!character.description.isNullOrEmpty()) {
-            description.text = character.description
+        if (!viewModel.character.value?.description.isNullOrEmpty()) {
+            description.text = viewModel.character.value?.description
         } else {
             descriptionLabel.text = getString(R.string.no_description_available)
         }

@@ -14,10 +14,12 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import it.marvel.R
 import it.marvel.network.utils.StateObserver
-import it.marvel.ui.home.adapter.CharacterAdapter
+import it.marvel.ui.adapter.CharacterAdapter
 import it.marvel.ui.home.detail.DetailActivity
+import it.marvel.utils.ItemOffsetDecoration
 import it.marvel.utils.isVisible
 import org.koin.androidx.viewmodel.ext.android.viewModel
+
 
 class HomeFragment : Fragment(), StateObserver {
 
@@ -75,8 +77,12 @@ class HomeFragment : Fragment(), StateObserver {
     private fun setRecyclerAdapter() {
         characterAdapter =
             CharacterAdapter(requireContext()) { DetailActivity.start(requireContext(), it) }
-        recyclerCharacters.layoutManager = GridLayoutManager(requireContext(), 2)
-        recyclerCharacters.adapter = characterAdapter
+
+        recyclerCharacters.apply {
+            layoutManager = GridLayoutManager(requireContext(), 2)
+            addItemDecoration(ItemOffsetDecoration(resources.getDimensionPixelSize(R.dimen.margin_10)))
+            adapter = characterAdapter
+        }
     }
 
     private fun setSearchView() {

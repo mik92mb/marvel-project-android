@@ -15,4 +15,10 @@ interface LocalDataSource {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAllCharacters(characters: List<Character>)
 
+    @Query("SELECT * FROM characters WHERE isFavorite == 1")
+    suspend fun getFavoriteCharacters(): List<Character>
+
+    @Query("UPDATE characters SET isFavorite = :isFavorite WHERE id =:characterId")
+    suspend fun updateCharacters(isFavorite: Boolean, characterId: Int)
+
 }

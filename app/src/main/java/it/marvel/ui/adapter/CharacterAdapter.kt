@@ -1,4 +1,4 @@
-package it.marvel.ui.home.adapter
+package it.marvel.ui.adapter
 
 import android.content.Context
 import android.view.LayoutInflater

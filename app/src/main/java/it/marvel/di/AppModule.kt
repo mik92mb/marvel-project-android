@@ -5,12 +5,14 @@ import android.content.Context
 import androidx.room.Room
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import it.marvel.network.repository.MarvelRepository
 import it.marvel.network.data.local.AppDatabase
 import it.marvel.network.data.local.LocalDataSource
 import it.marvel.network.data.remote.MarvelAPI
 import it.marvel.network.data.remote.RemoteDataSource
+import it.marvel.network.repository.MarvelRepository
+import it.marvel.ui.favorite.FavoriteViewModel
 import it.marvel.ui.home.HomeViewModel
+import it.marvel.ui.home.detail.DetailViewModel
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -24,6 +26,8 @@ import java.util.concurrent.TimeUnit
 
 val viewModelModule = module {
     viewModel { HomeViewModel(get()) }
+    viewModel { DetailViewModel(get()) }
+    viewModel { FavoriteViewModel(get()) }
 }
 
 val databaseModule = module {
