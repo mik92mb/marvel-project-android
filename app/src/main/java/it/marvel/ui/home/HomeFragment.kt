@@ -20,7 +20,6 @@ import it.marvel.utils.ItemOffsetDecoration
 import it.marvel.utils.isVisible
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-
 class HomeFragment : Fragment(), StateObserver {
 
     override val lifecycleOwner: LifecycleOwner

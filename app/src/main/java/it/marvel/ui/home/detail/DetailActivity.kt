@@ -70,7 +70,7 @@ class DetailActivity : AppCompatActivity() {
 
     private fun setFavouriteIcon() {
         favoriteIcon.apply {
-            val background = if (viewModel.character.value?.isFavorite == true) {
+            val background = if (viewModel.getCurrentFavoriteValue()) {
                 R.drawable.ic_favorite_white
             } else {
                 R.drawable.ic_favorite
@@ -100,16 +100,16 @@ class DetailActivity : AppCompatActivity() {
 
         name.text = viewModel.character.value?.name.orEmpty()
         infoComics.text = getString(R.string.comics)
-        sizeComics.text = viewModel.character.value?.comics?.items?.size.toString()
+        sizeComics.text = viewModel.getComics().size.toString()
 
         infoSeries.text = getString(R.string.series)
-        sizeSeries.text = viewModel.character.value?.series?.items?.size.toString()
+        sizeSeries.text = viewModel.getSeries().size.toString()
 
         infoEvents.text = getString(R.string.events)
-        sizeEvents.text = viewModel.character.value?.events?.items?.size.toString()
+        sizeEvents.text = viewModel.getEvents().size.toString()
 
         infoStories.text = getString(R.string.stories)
-        sizeStories.text = viewModel.character.value?.stories?.items?.size.toString()
+        sizeStories.text = viewModel.getStories().size.toString()
 
         if (!viewModel.character.value?.description.isNullOrEmpty()) {
             description.text = viewModel.character.value?.description

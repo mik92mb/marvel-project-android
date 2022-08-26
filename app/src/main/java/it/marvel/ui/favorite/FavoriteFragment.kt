@@ -14,7 +14,6 @@ import it.marvel.ui.home.detail.DetailActivity
 import it.marvel.utils.ItemOffsetDecoration
 import it.marvel.utils.isVisible
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import timber.log.Timber
 
 class FavoriteFragment : Fragment() {
 
@@ -34,9 +33,7 @@ class FavoriteFragment : Fragment() {
 
         textNoFavorite = view.findViewById(R.id.textNoFavorite)
 
-        viewModel.getFavoriteCharacters()
-
-        viewModel.state.observe(viewLifecycleOwner) {
+        viewModel.favoriteCharacters.observe(viewLifecycleOwner) {
             if (it.isEmpty()) {
                 textNoFavorite.isVisible(true)
                 recyclerFavoriteCharacters.isVisible(false)
@@ -46,6 +43,7 @@ class FavoriteFragment : Fragment() {
                 characterAdapter.addAll(it)
             }
         }
+
         setRecyclerAdapter(view)
     }
 
@@ -59,11 +57,5 @@ class FavoriteFragment : Fragment() {
             layoutManager = GridLayoutManager(requireContext(), 2)
             adapter = characterAdapter
         }
-    }
-
-    override fun onResume() {
-        Timber.i("SONO IN ONRESUME")
-        super.onResume()
-        viewModel.getFavoriteCharacters()
     }
 }

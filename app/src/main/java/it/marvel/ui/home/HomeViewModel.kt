@@ -34,5 +34,4 @@ class HomeViewModel(private val marvelRepository: MarvelRepository) : ViewModel(
             (character.name?.contains(query, true) ?: false ||
                     character.description?.contains(query, true) ?: false)
         } ?: emptyList()
-
 }
